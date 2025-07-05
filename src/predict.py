@@ -8,6 +8,7 @@ import torchvision.transforms as transforms
 import torch.nn as nn
 from PIL import Image
 
+
 def predict_page():
 
     #LOAD TRAINED MODEL
@@ -47,7 +48,7 @@ def predict_page():
         # UPLOAD POKEMON INFORMATION
         col1, col2 = st.columns([1, 2])
         with col1:
-            st.image(f'../sprites/{pokemon["Name"].lower()}.gif', width = 150)
+            st.image(f'https://img.pokemondb.net/sprites/black-white/anim/normal/{pokemon["Name"].lower()}.gif', width = 150)
             st.write(f'Pokédex #: {pokemon["#"]}')
             st.write(f'Predicted Pokémon: {pokemon["Name"]}')
             st.write(f'Pokédex Entry: {pokemon["Entry"]}')
