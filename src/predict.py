@@ -94,8 +94,9 @@ def predict_page():
                 )
             ),
             showlegend=False,
-            width=500,
-            height=500,
+            width=300,
+            height=300,
+            margin=dict(l=0, r=0, t=10, b=10)
         )
 
         with col2:
