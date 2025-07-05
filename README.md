@@ -54,25 +54,34 @@ The app is built with **Streamlit** and allows users to:
    - Plays the **cry** sound of that Pokémon
    - Shows its **base stats** from the Pokédex
 
----
-
 ## 🚀 How to Run
 
-### 1. 📓 Open in Google Colab
-- Go to [Google Colab](https://colab.research.google.com/)
-- Click the **GitHub** tab and search `alihuss1017/KantoDex`.
-- Open the provided `main.ipynb` notebook
+This project can be run **locally** with a Python virtual environment.
 
-### 3. ▶️ Run All Cells
-- The notebook will:
-  - ✅ Download the Kaggle Pokémon image dataset
-  - ✅ Preprocess the data
-  - ✅ Fine-tune the pretrained **ResNet-18** model
-  - ✅ Evaluate the model on the test set
-  - ✅ Launch the **Streamlit app**
+### 1. 🔁 Clone the Repository
+```bash
+git clone https://github.com/alihuss1017/KantoDex.git
+cd KantoDex
+```
 
-> Make sure your runtime is set to **GPU** (under `Runtime > Change runtime type`)
+### 2. 🐍 Create and Activate a Virtual Environment (Python 3.10+)
+```
+python3 -m venv myenv
+source myenv/bin/activate       # macOS/Linux
+# OR
+myenv\Scripts\activate          # Windows
+```
 
+### 3. 📦 Install Required Dependencies
+```
+pip install -r requirements.txt
+```
+
+### 4. 🚀 Launch the Streamlit App
+```
+cd src
+streamlit run app.py
+```
 ---
 
 ## ⚠️ Limitations
