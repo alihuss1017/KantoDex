@@ -1,6 +1,14 @@
-# 🧠 Pokémon Classifier (Gen 1)
+# 👾	 Pokémon Classifier (Gen 1)
 
 A deep learning-powered web app that identifies **1st generation Pokémon** from an image and displays relevant data like stats, sprite, and cry!
+
+---
+## 🌐 Live Demo
+
+🚀 Check out the deployed app here:  
+[**🔗 Pokémon Classifier (Streamlit Cloud)**](https://kantodex-classifier.streamlit.app/)
+
+> Upload an image of a Gen 1 Pokémon and the model will predict its name, show its sprite and stats, and even play its cry!
 
 ---
 
@@ -54,34 +62,6 @@ The app is built with **Streamlit** and allows users to:
    - Plays the **cry** sound of that Pokémon
    - Shows its **base stats** from the Pokédex
 
-## 🚀 How to Run
-
-This project can be run **locally** with a Python virtual environment.
-
-### 1. 🔁 Clone the Repository
-```bash
-git clone https://github.com/alihuss1017/KantoDex.git
-cd KantoDex
-```
-
-### 2. 🐍 Create and Activate a Virtual Environment (Python 3.10+)
-```
-python3 -m venv myenv
-source myenv/bin/activate       # macOS/Linux
-# OR
-myenv\Scripts\activate          # Windows
-```
-
-### 3. 📦 Install Required Dependencies
-```
-pip install -r requirements.txt
-```
-
-### 4. 🚀 Launch the Streamlit App
-```
-cd src
-streamlit run app.py
-```
 ---
 
 ## ⚠️ Limitations
