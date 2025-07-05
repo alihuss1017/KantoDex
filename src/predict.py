@@ -16,7 +16,7 @@ def predict_page():
     model.fc = nn.Sequential(nn.Linear(2048, 512),
                             nn.ReLU(),
                             nn.Linear(512, 150))
-    model.load_state_dict(torch.load('pokemodel.pt', weights_only = True, map_location = torch.device('cpu')),)
+    model.load_state_dict(torch.load('../models/pokemodel.pt', weights_only = True, map_location = torch.device('cpu')),)
     model.eval()
     
 
@@ -29,7 +29,7 @@ def predict_page():
 
     # PROMPT USER IMAGE UPLOAD
     img = st.file_uploader('Upload image of Pokemon: ', type = ['jpeg', 'jpg', 'png'])
-    poke_df = pd.read_csv('../pokedex_info.csv').sort_values(by = "Name")
+    poke_df = pd.read_csv('../data/pokedex_info.csv').sort_values(by = "Name")
 
     if img is not None:
         img = Image.open(img).convert('RGB')
@@ -52,7 +52,7 @@ def predict_page():
             st.write(f'Pokédex #: {pokemon["#"]}')
             st.write(f'Predicted Pokémon: {pokemon["Name"]}')
             st.write(f'Pokédex Entry: {pokemon["Entry"]}')
-            st.audio(f'../cries/{pokemon["#"]}.ogg', format = "audio/ogg")
+            st.audio(f'../assets/cries/{pokemon["#"]}.ogg', format = "audio/ogg")
 
         # PLOT POKEMON STATS
         data = {
