@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import altair as alt
 import torch
+import plotly.graph_objects as go
 import torchvision.models as models
 import torchvision.transforms as transforms
 import torch.nn as nn
@@ -16,7 +17,7 @@ def predict_page():
     model.fc = nn.Sequential(nn.Linear(512, 256),
                             nn.ReLU(),
                             nn.Linear(256, 150))
-    model.load_state_dict(torch.load('../models/pokemodel.pt', weights_only = True, map_location = torch.device('cpu')),)
+    model.load_state_dict(torch.load('models/pokemodel.pt', weights_only = True, map_location = torch.device('cpu')),)
     model.eval()
     
 
@@ -29,7 +30,7 @@ def predict_page():
 
     # PROMPT USER IMAGE UPLOAD
     img = st.file_uploader('Upload image of Pokemon: ', type = ['jpeg', 'jpg', 'png'])
-    poke_df = pd.read_csv('../data/pokedex_info.csv').sort_values(by = "Name")
+    poke_df = pd.read_csv('data/pokedex_info.csv').sort_values(by = "Name")
 
     if img is not None:
         img = Image.open(img).convert('RGB')
@@ -52,7 +53,7 @@ def predict_page():
             st.write(f'Pokédex #: {pokemon["#"]}')
             st.write(f'Predicted Pokémon: {pokemon["Name"]}')
             st.write(f'Pokédex Entry: {pokemon["Entry"]}')
-            st.audio(f'../assets/cries/{pokemon["#"]}.ogg', format = "audio/ogg")
+            st.audio(f'assets/cries/{pokemon["#"]}.ogg', format = "audio/ogg")
 
         # PLOT POKEMON STATS
         data = {
@@ -62,12 +63,41 @@ def predict_page():
         }
 
         stats_df = pd.DataFrame(data)
-        with col2:
-            chart = alt.Chart(stats_df).mark_bar().encode(y = alt.Y('Category:N', sort = None, axis = alt.Axis(labelFontSize = 16)),
-                                                        x = alt.X("Values:Q", scale = alt.Scale(domain = [0, 125]), axis = None),
-                                                        color = alt.Color('Values:Q', scale = alt.Scale(domain = [20, 125], range = ['red', 'green'], type = 'linear'),
-                                                                            legend = None)
-            ).properties(width = 800, height = 350)
-            st.title("Stats")
-            st.altair_chart(chart, use_container_width = True)
+        categories = stats_df['Category'].tolist()
+        values = stats_df['Values'].tolist()
 
+        # Repeat the first value to close the radar loop
+        values += values[:1]
+        categories += categories[:1]
+
+        fig = go.Figure(
+            data=[
+                go.Scatterpolar(
+                    r=values,
+                    theta=categories,
+                    fill='toself',
+                    name='Stats',
+                    line=dict(color='red'),
+                )
+            ]
+        )
+
+        fig.update_layout(
+            polar=dict(
+                radialaxis=dict(
+                    visible=True,
+                    range=[0, 125],
+                    tickfont=dict(size=14)
+                ),
+                angularaxis=dict(
+                    tickfont=dict(size=16)
+                )
+            ),
+            showlegend=False,
+            width=500,
+            height=500,
+        )
+
+        with col2:
+            st.title("Stats")
+            st.plotly_chart(fig, use_container_width=True)
