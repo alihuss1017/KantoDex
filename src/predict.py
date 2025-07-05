@@ -12,10 +12,10 @@ from PIL import Image
 def predict_page():
 
     #LOAD TRAINED MODEL
-    model = models.resnet101(weights="ResNet101_Weights.DEFAULT")
-    model.fc = nn.Sequential(nn.Linear(2048, 512),
+    model = models.resnet18(pretrained = True)
+    model.fc = nn.Sequential(nn.Linear(512, 256),
                             nn.ReLU(),
-                            nn.Linear(512, 150))
+                            nn.Linear(256, 150))
     model.load_state_dict(torch.load('../models/pokemodel.pt', weights_only = True, map_location = torch.device('cpu')),)
     model.eval()
     
