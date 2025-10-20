@@ -1,5 +1,0 @@
-[general]
-target = "src/app.py"
-
-[layout]
-wide = true
