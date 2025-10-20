@@ -1,6 +1,6 @@
 # 👾	 Pokémon Classifier (Gen 1)
 
-A deep learning-powered web app that identifies **1st generation Pokémon** from an image and displays relevant data like stats, sprite, and cry!
+A deep learning-powered web app that identifies **1st generation Pokémon** from an image!
 
 ---
 ## 🌐 Live Demo
@@ -8,18 +8,16 @@ A deep learning-powered web app that identifies **1st generation Pokémon** from
 🚀 Check out the deployed app here:  
 [**🔗 Pokémon Classifier (Streamlit Cloud)**](https://kantodex-classifier.streamlit.app/)
 
-> Upload an image of a Gen 1 Pokémon and the model will predict its name, show its sprite and stats, and even play its cry!
+> Upload an image of a Gen 1 Pokémon and the model will predict which Pokémon it is. 
 
 ---
 
 ## 📦 Overview
 
-This project uses **transfer learning** with a ResNet-18 model to classify Pokémon from uploaded images. After training and fine-tuning, the model is integrated into an interactive **Streamlit** app that:
+This project uses **transfer learning** with a ResNet-18 model to classify Pokémon from uploaded images. After training and fine-tuning, the model is integrated into a **React + FastAPI** web app that
 
 - Predicts the Pokémon species from an uploaded image
-- Displays its animated sprite
-- Plays its cry sound
-- Shows its base stats
+- Displays its base stats from the Pokedex.
 
 ---
 
@@ -33,11 +31,6 @@ This project uses **transfer learning** with a ResNet-18 model to classify Poké
 - **Source**: [Kaggle Dataset](https://www.kaggle.com/datasets/mikoajkolman/pokemon-images-first-generation17000-files)
 - Images for all 151 Gen 1 Pokémon in various styles.
 
-### 🔊 Cries
-- **Source**: [The Sounds Resource](https://www.sounds-resource.com/3ds/pokemonultrasunultramoon/sound/9547/)
-- Cry sound files for each Pokémon stored in `assets/cries/`.
-
----
 
 ## 🧠 Model
 
@@ -51,19 +44,6 @@ This project uses **transfer learning** with a ResNet-18 model to classify Poké
 
 ---
 
-## 🖥️ App Functionality
-
-The app is built with **Streamlit** and allows users to:
-
-1. **Upload an image** of a Pokémon
-2. The model **predicts the species**
-3. The app:
-   - Displays an **animated sprite** of the predicted Pokémon
-   - Plays the **cry** sound of that Pokémon
-   - Shows its **base stats** from the Pokédex
-
----
-
 ## ⚠️ Limitations
 
 While the KantoDex Classifier performs well within its design scope, there are a few known limitations:
@@ -71,5 +51,29 @@ While the KantoDex Classifier performs well within its design scope, there are a
 - ❌ **Excludes Nidoran♂ and Nidoran♀**: Due to character encoding issues and image/sprite naming inconsistencies, these Pokémon were excluded from the dataset.
 - 🧬 **Only Supports 1st Generation Pokémon**: The model is trained exclusively on the original 150 Pokémon, meaning it will not recognize Pokémon from later generations..
 
+--- 
+## 🚀 Getting Started
 
+### 1. Install dependences:
+```
+pip install -r requirements.txt
+```
 
+### 2. Prepare the model:
+```
+cd backend
+jupyter notebook notebooks/main.ipynb
+```
+
+### 3. Start the backend:
+```
+uvicorn main:app --reload
+```
+
+### 4. In a new terminal, create environment file with local backend and start frontend:
+Make sure to include ```VITE_API_URL=http://127.0.0.1:8000``` in ```.env.dev```
+```
+cd frontend
+cp .env.dev
+npm run dev:dev
+```
