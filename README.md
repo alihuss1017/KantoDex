@@ -14,10 +14,7 @@ A deep learning-powered web app that identifies **1st generation Pokémon** from
 
 ## 📦 Overview
 
-This project uses **transfer learning** with a ResNet-18 model to classify Pokémon from uploaded images. After training and fine-tuning, the model is integrated into a **React + FastAPI** web app that
-
-- Predicts the Pokémon species from an uploaded image
-- Displays its base stats from the Pokedex.
+This project uses **transfer learning** with a ResNet-18 model to classify Pokémon from uploaded images. After training and fine-tuning, the model is integrated into a **React + FastAPI** web app that predicts the Pokémon species from an uploaded image.
 
 ---
 
@@ -50,6 +47,7 @@ While the KantoDex Classifier performs well within its design scope, there are a
 
 - ❌ **Excludes Nidoran♂ and Nidoran♀**: Due to character encoding issues and image/sprite naming inconsistencies, these Pokémon were excluded from the dataset.
 - 🧬 **Only Supports 1st Generation Pokémon**: The model is trained exclusively on the original 150 Pokémon, meaning it will not recognize Pokémon from later generations..
+- ❌ **Excludes Stats and Information of Pokémon♀**: Work in Progress.
 
 --- 
 ## 🚀 Getting Started
