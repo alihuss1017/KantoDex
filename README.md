@@ -6,7 +6,7 @@ A deep learning-powered web app that identifies **1st generation Pokémon** from
 ## 🌐 Live Demo
 
 🚀 Check out the deployed app here:  
-[**🔗 Pokémon Classifier (Streamlit Cloud)**](https://kantodex1017.netlify.app/)
+[**🔗 Pokémon Classifier (Netlify)**](https://kantodex1017.netlify.app/)
 
 > Upload an image of a Gen 1 Pokémon and the model will predict which Pokémon it is. 
 
