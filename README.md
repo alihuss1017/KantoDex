@@ -47,7 +47,7 @@ While the KantoDex Classifier performs well within its design scope, there are a
 
 - ❌ **Excludes Nidoran♂ and Nidoran♀**: Due to character encoding issues and image/sprite naming inconsistencies, these Pokémon were excluded from the dataset.
 - 🧬 **Only Supports 1st Generation Pokémon**: The model is trained exclusively on the original 150 Pokémon, meaning it will not recognize Pokémon from later generations..
-- ❌ **Excludes Stats and Information of Pokémon♀**: Work in Progress.
+- ❌ **Excludes Stats and Information of Pokémon**: Work in Progress.
 
 --- 
 ## 🚀 Getting Started
