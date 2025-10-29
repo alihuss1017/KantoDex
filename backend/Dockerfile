@@ -1,34 +1,18 @@
-# ============================
-# 1️⃣ Use an official Python base image
-# ============================
 FROM python:3.11-slim
 
-# ============================
-# 2️⃣ Set working directory inside the container
-# ============================
+
 WORKDIR /app
 
-# ============================
-# 3️⃣ Copy dependency list and install them
-# ============================
-COPY requirements.txt .
 
-# Install dependencies efficiently
+COPY backend/ /app/
+COPY backend/requirements.txt /app/requirements.txt
+
+
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install torch==2.0.0+cpu torchvision==0.15.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 
-# ============================
-# 4️⃣ Copy the rest of your FastAPI app files
-# ============================
-COPY main.py ./main.py
-COPY models/pokemodel.pt ./models/pokemodel.pt
-COPY data/pokedex_info.csv ./data/pokedex_info.csv
 
-# ============================
-# 5️⃣ Expose the port FastAPI runs on (default 8000)
-# ============================
-EXPOSE 8000
+EXPOSE 8080
 
-# ============================
-# 6️⃣ Start FastAPI server with uvicorn
-# ============================
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
