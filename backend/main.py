@@ -2,16 +2,17 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 from torchvision import transforms
+import os
 import torch.nn as nn
 import torchvision.models as models
 import torch
 import pandas as pd
 
 app = FastAPI()
-
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = ["http://localhost:5173"], 
+    allow_origins = ["*"],
     allow_credentials = True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -55,3 +56,18 @@ async def predict_endpoint(file: UploadFile = File(...)):
     tensor = preprocess_image(file)
     pred = predict(tensor)
     return {"prediction": pred}
+
+@app.get("/")
+def root():
+    return {"status": "ok"}
+
+@app.options("/predict/")
+async def options_handler():
+    return {"ok": True}
+
+@app.get("/env")
+def get_env():
+    return {
+        "FRONTEND_URL": os.getenv("FRONTEND_URL"),
+        "message": "FastAPI is alive"
+    }
