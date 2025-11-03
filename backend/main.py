@@ -27,14 +27,15 @@ def load_model():
     model = models.resnet18(weights = None)
     model.fc = nn.Sequential(nn.Linear(512, 256),
                             nn.ReLU(),
-                            nn.Linear(256, 150))
+                            nn.Linear(256, 143))
+    
     model.load_state_dict(torch.load('models/pokemodel.pt', weights_only = True, map_location = torch.device('cpu')),)
     model.eval()
 
 
 def preprocess_image(file: UploadFile):
     transform = transforms.Compose([
-                transforms.Resize((224,224)),
+                transforms.Resize((256,256)),
                 transforms.ToTensor(), 
                 transforms.Normalize(mean = [0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])])
     
