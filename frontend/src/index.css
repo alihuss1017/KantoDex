@@ -1,6 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: Inter;
 }
 
 header {
@@ -50,4 +51,50 @@ body {
 .upload-item {
     color: white;
     font-size: 16px;
+}
+
+.poke-page-container {
+  margin: 75px;
+  padding: 30px 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color:white;
+}
+
+.sprite-chart-table-container {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.sprite-chart-table-container > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sprite-chart-table-container img {
+  height: 300px;
+  width: 300px;
+}
+
+.table-item {
+  border-collapse: collapse;
+}
+
+.table-item th, td {
+  border-style: solid;
+  border-color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+span {
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 20%;
 }
